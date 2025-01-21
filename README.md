@@ -7,7 +7,7 @@ User Authentication: Secure user login/signup system.
 
 Content Submission: Users can add their own funny skills, stories, incidents, and jokes.
 
-Voting System: Users can upvote or downvote jokes, stories, and skills.
+Voting System: Users can upvote or downvote jokes, stories,   and skills.
 
 Category Filter: Filter content by category (e.g., funniest, embarrassing, amazing).
 
