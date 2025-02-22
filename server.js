@@ -1,27 +1,32 @@
-// Import required packages
+// Import dependencies
 const express = require('express');
-const dotenv = require('dotenv');  // Import dotenv package
-dotenv.config();  // Configure dotenv
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
+// Initialize app and dotenv
 const app = express();
+dotenv.config();
 
-// Define the port the server will listen on, either from environment variables or default to 5000
-const PORT = process.env.PORT || 5000;
+// Connect to MongoDB using the connection string from .env
+const mongoURI = process.env.MONGO_URI; // Use your MongoDB connection string here
 
-// Middleware to parse JSON requests
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB!'))
+  .catch((err) => console.error('Error connecting to MongoDB:', err));
+
+// Add middlewares like JSON parsing, routes, etc.
 app.use(express.json());
 
-// Basic /ping route to test if server is working
-app.get('/ping', (req, res) => {
-  res.status(200).send('Pong');
+// Example of a simple home route to check MongoDB connection
+app.get('/', (req, res) => {
+  const connectionStatus = mongoose.connection.readyState === 1 ? 'Connected' : 'Not Connected';
+  res.send(`MongoDB connection status: ${connectionStatus}`);
 });
 
-// Start the server with error handling
-app.listen(PORT, (err) => {
-  if (err) {
-    console.error(`Error starting server: ${err.message}`);
-    process.exit(1); // Exit the process with an error code if server fails to start
-  } else {
-    console.log(`Server is running on port http://localhost:${PORT}`);
-  }
+// Define other routes here...
+
+// Set the port for the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port http://localhost:${PORT}`);
 });
