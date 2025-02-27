@@ -1,0 +1,20 @@
+meta {
+  name: put
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:5000/api/content/67bfe961e55b1ada30191afa
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Balancing a spoon on my nose - New Record",
+    "body": "I can now keep a spoon on my nose for 3 minutes without dropping it!",
+    "category": "useless-skill"
+  }
+  
+}

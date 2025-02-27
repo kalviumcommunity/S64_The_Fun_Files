@@ -1,32 +1,20 @@
-// Import dependencies
+// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const routes = require('./routes'); // Import the routes
 
-// Initialize app and dotenv
-const app = express();
 dotenv.config();
 
-// Connect to MongoDB using the connection string from .env
-const mongoURI = process.env.MONGO_URI; // Use your MongoDB connection string here
+const app = express();
+const mongoURI = process.env.MONGO_URI;
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB!'))
-  .catch((err) => console.error('Error connecting to MongoDB:', err));
+  .then(() => console.log('MongoDB connected!'))
+  .catch((err) => console.error('MongoDB connection error:', err));
 
-// Add middlewares like JSON parsing, routes, etc.
-app.use(express.json());
+app.use(express.json()); // For parsing application/json
+app.use('/api', routes); // Use the CRUD routes under the /api path
 
-// Example of a simple home route to check MongoDB connection
-app.get('/', (req, res) => {
-  const connectionStatus = mongoose.connection.readyState === 1 ? 'Connected' : 'Not Connected';
-  res.send(`MongoDB connection status: ${connectionStatus}`);
-});
-
-// Define other routes here...
-
-// Set the port for the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT;
+app.listen(PORT, () => console.log(`Server running on port http://localhost:${PORT}`));

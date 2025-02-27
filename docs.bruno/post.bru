@@ -1,0 +1,20 @@
+meta {
+  name: post
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:5000/api/content
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Balancing a spoon on my nose",
+    "body": "I can keep a spoon on my nose for 2 minutes without dropping it!",
+    "category": "useless-skill"
+  }
+  
+}
