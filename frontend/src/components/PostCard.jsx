@@ -5,7 +5,8 @@ function PostCard({ title, category, votes, content }) {
       color: "#fff",
       padding: "20px",
       borderRadius: "15px",
-      width: "350px",  /* ✅ Fixed width for consistency */
+      width: "100%",  /* ✅ Responsive width */
+      maxWidth: "350px", /* ✅ Ensures consistency */
       minHeight: "250px",
       display: "flex",
       flexDirection: "column",

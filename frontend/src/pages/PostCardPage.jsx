@@ -1,3 +1,4 @@
+import React from "react";
 import PostCard from "../components/PostCard";
 
 function PostCardPage() {
@@ -26,40 +27,45 @@ function PostCardPage() {
   ];
 
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      minHeight: "100vh",
-      width: "100%",
-      background: "linear-gradient(to right, #1e1e1e, #2a2a2a)",
-      color: "#f1f1f1",
-      fontFamily: "'Poppins', sans-serif",
-      padding: "5vw",
-      textAlign: "center",
-    }}>
-      <h1 style={{
-        color: "#ff6600",
-        marginBottom: "30px",
-        fontSize: "clamp(2rem, 4vw, 3rem)",
-        fontWeight: "bold",
-        textShadow: "2px 2px 10px rgba(255, 102, 0, 0.5)",
-      }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh",
+        width: "100%",
+        background: "linear-gradient(to right, #1e1e1e, #2a2a2a)",
+        color: "#f1f1f1",
+        fontFamily: "'Poppins', sans-serif",
+        padding: "5vw",
+        textAlign: "center",
+      }}
+    >
+      <h1
+        style={{
+          color: "#ff6600",
+          marginBottom: "30px",
+          fontSize: "clamp(2rem, 4vw, 3rem)",
+          fontWeight: "bold",
+          textShadow: "2px 2px 10px rgba(255, 102, 0, 0.5)",
+        }}
+      >
         Latest Fun Stories 🎭
       </h1>
 
-      {/* Horizontal Scroll Wrapper */}
-      <div style={{
-        display: "flex",
-        overflowX: "auto",  /* ✅ Enables horizontal scrolling if needed */
-        scrollbarWidth: "none", /* Hides default scrollbar */
-        gap: "40px", /* ✅ Adds space between cards */
-        padding: "10px",
-        width: "90%",
-        maxWidth: "1200px",
-        justifyContent: "center", /* ✅ Centers the cards */
-      }}>
+      {/* Responsive Grid Layout */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
+          gap: "40px",
+          width: "100%",
+          maxWidth: "1200px",
+          justifyContent: "center",
+          padding: "10px",
+        }}
+      >
         {posts.map((post, index) => (
           <PostCard key={index} {...post} />
         ))}
